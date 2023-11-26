@@ -1,2 +1,2 @@
 [controller_node]
-192.168.30.160 ansible_user=opensuse
+192.168.56.103 ansible_user=opensuse
