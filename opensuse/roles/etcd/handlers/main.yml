@@ -1,6 +1,0 @@
----
-
-- name: Reloading systemd Service Files
-  systemd:
-    daemon_reload: yes
-  ignore_errors: yes 

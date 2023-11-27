@@ -1,7 +1,0 @@
----
-
-- name: Restarting the Database Services
-  service:
-    name: mysql
-    state: restarted
-    enabled: true
