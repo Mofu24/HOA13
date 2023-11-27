@@ -8,7 +8,7 @@
 #
 # see man 1 memcached for more
 #
-MEMCACHED_PARAMS="-l 192.168.30.160"
+MEMCACHED_PARAMS="-l 192.168.56.107"
 
 ## Path:        Network/WWW/Memcached
 ## Description: username memcached should run as
