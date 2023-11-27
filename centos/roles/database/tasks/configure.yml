@@ -1,5 +1,3 @@
----
-
 - name: Copying openstack.cnf file
   copy:
     src: openstack.cnf
@@ -8,21 +6,22 @@
     group: root
     mode: 644
 
-  notify: Restarting database service
-
 - name: Starting and enabling mariadb.service
   service:
     name: mariadb.service
     state: started
     enabled: true
 
-- name: Adding mysql service to firewall
-  ansible.posix.firewalld:
-    service: mysql
-    permanent: yes
-    state: enabled
+- name: Adding MySQL service to the firewall
+  become: yes
+  become_user: root
+  command: "firewall-cmd --zone=public --add-service=mysql --permanent"
 
-  notify: Reloading firewall
+- name: Reloading the firewall to apply changes
+  become: yes
+  become_user: root
+  command: "firewall-cmd --reload"
+
 
 - name: use "mysql_secure_installation" for Fresh MySQL Installation
   mysql_secure_installation:

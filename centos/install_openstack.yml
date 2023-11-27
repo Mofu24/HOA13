@@ -2,11 +2,9 @@
 
 - hosts: all
   become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   pre_tasks: 
-
-  - name: Updating the Repository
-    yum:
-      update_cache: true
 
 - hosts: controller_node 
   become: true

@@ -1,5 +1,3 @@
----
-
 - name: Editing etcd.conf file
   copy:
     src: etcd.conf
@@ -9,20 +7,21 @@
     mode: 644
 
 - name: Adding 2380 port to firewall
-  ansible.posix.firewalld:
-    port: 2380/tcp
-    permanent: yes
-    state: enabled
-
+  become: yes
+  become_user: root
+  command: "firewall-cmd --zone=public --add-port=2380/tcp --permanent"
   notify: Reloading firewall
 
 - name: Adding 2379 port to firewall
-  ansible.posix.firewalld:
-    port: 2379/tcp
-    permanent: yes
-    state: enabled
-
+  become: yes
+  become_user: root
+  command: "firewall-cmd --zone=public --add-port=2379/tcp --permanent"
   notify: Reloading firewall
+
+- name: Reloading the firewall to apply changes
+  become: yes
+  become_user: root
+  command: "firewall-cmd --reload"
 
 - name: Starting etcd service
   service:

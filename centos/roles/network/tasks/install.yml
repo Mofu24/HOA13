@@ -20,8 +20,3 @@
   ansible.builtin.hostname:
     name: controller
     use: systemd
-
-- name: Restarting network
-  service: 
-    name: network
-    state: restarted

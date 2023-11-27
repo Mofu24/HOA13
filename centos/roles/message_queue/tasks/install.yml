@@ -10,5 +10,3 @@
     name: rabbitmq-server.service
     state: started
     enabled: true
-  
-  notify: Configuring rabbitmq-server

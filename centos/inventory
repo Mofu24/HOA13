@@ -1,2 +1,2 @@
 [controller_node]
-192.168.56.108 ansible_user=cserver
+192.168.56.108 ansible_python_interpreter=/usr/bin/python2

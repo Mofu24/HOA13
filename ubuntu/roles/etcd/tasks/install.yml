@@ -1,0 +1,43 @@
+- name: Creating etcd user
+  group:
+    name: etcd
+    system: true
+    state: present
+
+- name: Creating user for etcd
+  user:
+    name: etcd
+    home: "/var/lib/etcd"
+    shell: /bin/false
+    group: etcd
+    system: true
+
+- name: Creating /etc/etcd directory
+  file:
+    path: /etc/etcd
+    state: directory
+    owner: etcd
+    group: etcd
+
+- name: Creating /var/lib/etcd directory
+  file:
+    path: /var/lib/etcd
+    state: directory
+    owner: etcd
+    group: etcd
+
+- name: Creating a config file for etcd
+  copy: 
+    src: etcd.conf.yml
+    dest: /etc/etcd/etcd.conf.yml
+    owner: root
+    group: root
+    mode: 644
+
+- name: Copying the service file for etcd
+  copy: 
+    src: etcd.service
+    dest: /usr/lib/systemd/system/etcd.service
+    owner: root
+    group: root
+    mode: 644

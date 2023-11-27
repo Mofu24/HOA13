@@ -1,7 +1,8 @@
 ---
 
 - name: Installing chrony
-  yum:
+  become: yes
+  dnf:
     name: chrony
     state: latest
 
